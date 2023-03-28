@@ -1,0 +1,53 @@
+body{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    }
+    
+    .container{
+    display:flex;
+    flex-direction: column;
+    width:375px;
+    height: auto;
+    background-color: silver;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    box-sizing: border-box;
+    }
+    
+    .top{
+    padding: 15px;
+    font: large 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .display{
+        display: flex;
+        flex-direction: column;
+        background-color: #D3D3D3;
+        width: 90%;
+        border-radius: 5px;
+        height: 50px;
+    }
+    #finalResult{
+        padding-top:25px;
+        padding-bottom: 25px;
+    }
+    #rawResult{
+        padding-top:25px;
+        padding-bottom: 25px;
+    }
+
+    .buttons{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    flex-direction:row;
+    }
+    
+    .operator, .number{
+    padding: 25px;
+    flex-basis:25%;
+    }
