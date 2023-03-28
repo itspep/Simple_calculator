@@ -1,51 +1,78 @@
-body{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    }
-    
-    .container{
-    display:flex;
-    flex-direction: column;
-    width:375px;
-    height: auto;
-    background-color: silver;
-    flex-wrap:wrap;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    box-sizing: border-box;
-    }
-    
-    .top{
-    padding: 15px;
-    font: large 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-
-    .display{
-        display: flex;
-        flex-direction: column;
-        background-color: #D3D3D3;
-        width: 90%;
-        border-radius: 5px;
-        height: 50px;
-    }
-    #upperDisplay{
-        border: 1px solid black;
-    }
-    #lowerDisplay{
-        border: 1px solid black;
-    }
-
-    .buttons{
+/* Set up the basic styles for the page */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  /* Style the header */
+  .top {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the display area */
+  .display {
     display: flex;
-    flex-wrap: wrap;
-    padding: 15px;
-    flex-direction:row;
-    }
-    
-    .operator, .number{
-    padding: 25px;
-    flex-basis:25%;
-    }
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 110px;
+    background-color: #f7f7f7;
+    padding: 10px;
+  }
+  
+  .userInput {
+    height: 50%;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+    box-sizing: border-box;
+    border: none;
+  }
+  
+  /* Style the buttons */
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  }
+  
+  .number,
+  .operator {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+    border: none;
+    background-color: #eee;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+  }
+  
+  .number:hover,
+  .operator:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
+  
+  /* Style the footer */
+  .myFooter {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #999;
+  }
+  
