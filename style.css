@@ -31,13 +31,11 @@ body{
         border-radius: 5px;
         height: 50px;
     }
-    #finalResult{
-        padding-top:25px;
-        padding-bottom: 25px;
+    #upperDisplay{
+        border: 1px solid black;
     }
-    #rawResult{
-        padding-top:25px;
-        padding-bottom: 25px;
+    #lowerDisplay{
+        border: 1px solid black;
     }
 
     .buttons{
