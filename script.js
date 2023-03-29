@@ -4,6 +4,7 @@ const buttons=document.querySelectorAll(".number");
 const operators=document.querySelectorAll(".operator");
 const equals=document.getElementById("equal");
 const clear=document.getElementById("clear");
+const eraser=document.getElementById("Backspace");
 let operator;
 let num1="";
 let num2="";
@@ -18,6 +19,21 @@ clear.addEventListener("click", ()=>{
     operator="";
 });
 
+eraser.addEventListener("click", () => {
+    if (lowerDisplay.innerText.length > 0) {
+        //I used to slice function here to remove a character from a string
+      lowerDisplay.innerText = lowerDisplay.innerText.slice(0, -1);
+    } else if (upperDisplay.innerText.length > 0) {
+        //I tried to use a different method here
+        //I use the split function to convert the string to an array and store it in chars
+      let chars = upperDisplay.innerText.split('');
+      //use the  pop function to remove the last character
+      chars.pop();
+      //use the join function to put them back together as a string
+      upperDisplay.innerText = chars.join('');
+    }
+  });
+  
 
 
 
