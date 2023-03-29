@@ -5,11 +5,33 @@ const operators=document.querySelectorAll(".operator");
 const equals=document.getElementById("equal");
 const clear=document.getElementById("clear");
 const eraser=document.getElementById("Backspace");
+const onOff=document.querySelectorAll(".onOff");
 let operator;
 let num1="";
 let num2="";
 let round=1;
+//setting the on and off button
+onOff.forEach((on_off)=>{
+    on_off.addEventListener("click", powers)
+});
 
+function powers(event){
+    let onof=event.target.textContent;
+    console.log(onof);
+    if(onof==="OFF"){
+        upperDisplay.innerText="";
+        lowerDisplay.innerText="";
+        buttons.forEach(button=>button.disabled=true);
+        operators.forEach(operator=>operator.disabled=true);
+        
+    }
+    else if(onof==="ON"){
+        upperDisplay.disabled=false;
+        lowerDisplay.disabled=false;
+        buttons.forEach(button=>button.disabled=false);
+        operators.forEach(operator=>operator.disabled=false);
+    }
+    }
 //setting the clear button
 clear.addEventListener("click", ()=>{
     lowerDisplay.innerText="";
@@ -18,7 +40,7 @@ clear.addEventListener("click", ()=>{
     num2="";
     operator="";
 });
-
+//settting the erase button
 eraser.addEventListener("click", () => {
     if (lowerDisplay.innerText.length > 0) {
         //I used to slice function here to remove a character from a string
@@ -34,9 +56,6 @@ eraser.addEventListener("click", () => {
     }
   });
   
-
-
-
 //determine which button was clicked
 buttons.forEach((button)=>{
     button.addEventListener("click", getData)});
