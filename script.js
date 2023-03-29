@@ -14,16 +14,23 @@ let round=1;
 //determine which button was clicked
 buttons.forEach((button)=>{
     button.addEventListener("click", getData)});
-//create the function to obtain the dat
+//create the function to obtain the data
     function getData(event){
-    
+        if (!num1.match(/[*\-/+]/)) {
+            let data = event.target.textContent;
+            console.log(data);
+            num1 += data;
+            lowerDisplay.innerText = num1;
+          }
+          
+    else{
         let data="";
         data=event.target.textContent;
         console.log(data);
-        num1+=data
-        lowerDisplay.innerText=num1;
+        num2=data
+        lowerDisplay.innerText=num2;
     }
-
+}
 
 //declare the function for the operator
 operators.forEach((operator)=>{
