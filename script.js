@@ -3,12 +3,21 @@ const lowerDisplay=document.getElementById("lowerDisplay");
 const buttons=document.querySelectorAll(".number");
 const operators=document.querySelectorAll(".operator");
 const equals=document.getElementById("equal");
+const clear=document.getElementById("clear");
 let operator;
 let num1="";
 let num2="";
 let round=1;
 
-//checking my displays
+//setting the clear button
+clear.addEventListener("click", ()=>{
+    lowerDisplay.innerText="";
+    upperDisplay.innerText="";
+    num1="";
+    num2="";
+    operator="";
+});
+
 
 
 
