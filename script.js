@@ -37,7 +37,7 @@ operators.forEach((operator)=>{
 function getOperator(event){
     operator=event.target.textContent;
     console.log(operator);
-    upperDisplay.innerText=num1+=operator;
+    upperDisplay.innerText=num1+operator;
     lowerDisplay.innerText="";
 }
 
@@ -46,35 +46,42 @@ equals.addEventListener("click", performCalculation)
 
 //create the function to perform the calculation
 function performCalculation(){
+    let results;
     switch (operator){
         case '+':
-            return add(num1, num2);
+            results= add(num1, num2);
          break;
         case '-':
-            return minus(num1, num2);
+            results=minus(num1, num2);
          break;
         case '/':
-            return divide(num1, num2);
+            results= divide(num1, num2);
          break;
         case '*':
-            return times(num1, num2);
+            results= times(num1, num2);
          break;
     }
+    resetDisplay(num1, num2, operator);
+    lowerDisplay.innerText=results;
 }
+function resetDisplay(num1, num2, operator) {
+    upperDisplay.innerText = num1+operator+num2;
+  }
+  
 
 //define the functions for the various calcuations
 function add(num1, num2){
-    return parseDouble(num1)+parseDouble(num2);
+    return parseFloat(num1)+parseFloat(num2);
 }
 //create  the function for the subtraction
 function minus(num1, num2){
-    return parseDouble(num1)-parseDouble(num2);
+    return parseFloat(num1)-parseFloat(num2);
 }
 //create the multiplication function
 function times(num1, num2){
-    return parseDouble(num1)*parseDouble(num2);
+    return parseFloat(num1)*parseFloat(num2);
 }
 //create the division function
 function divide(num1, num2){
-    return parseDouble(num1)/parseDouble(num2);
+    return parseFloat(num1)/parseFloat(num2);
 }
