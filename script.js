@@ -45,33 +45,43 @@ eraser.addEventListener("click", () => {
     if (lowerDisplay.innerText.length > 0) {
         //I used to slice function here to remove a character from a string
       lowerDisplay.innerText = lowerDisplay.innerText.slice(0, -1);
+      lowerDisplay.innerText = lowerDisplay.innerText.replace(/\s+/g, '');
+      num1=lowerDisplay.innerText;
     } else if (upperDisplay.innerText.length > 0) {
-        //I tried to use a different method here
-        //I use the split function to convert the string to an array and store it in chars
-      let chars = upperDisplay.innerText.split('');
-      //use the  pop function to remove the last character
-      chars.pop();
-      //use the join function to put them back together as a string
-      upperDisplay.innerText = chars.join('');
+        //I realised that after using the slice method, my num still remains a string
+      upperDisplay.innerText = upperDisplay.innerText.slice(0, -1);
+      upperDisplay.innerText = upperDisplay.innerText.replace(/\s+/g, '');
+      num2=upperDisplay.innerText;
     }
   });
-  
+
 //determine which button was clicked
 buttons.forEach((button)=>{
     button.addEventListener("click", getData)});
 //create the function to obtain the data
 function getData(event) {
-    let data = event.target.textContent;
-    if (!operator) {
-      // if no operator has been selected yet, add to num1
-      num1 += data;
-      lowerDisplay.innerText = num1;
-    } else {
-      // if an operator has been selected, add to num2
-      num2 += data;
-      lowerDisplay.innerText = num2;
+    let data ="";
+    data= event.target.textContent;
+    if (!/[\*\/+-]$/.test(data)) {
+        if(data.length<=12 && /^[+\-]?/ && num1.length==0){
+            num1 += data;
+            lowerDisplay.innerText = num1;
+            console.log(num1);
+        }
+    } else if(/[\*\/+-]$/.test(data) && data.length>0){
+        num2=data;
+        upperDisplay.innerText=num1+operator+num2;
+        lowerDisplay="";
     }
-  }
+    else {
+      // if an operator has been selected, add to num2
+      if(data.length<=12 && /^[+\-]?/ && operator){
+      num1 += data;
+      lowerDisplay.innerText="";
+      console.log(num1);
+      }
+    }
+}
 
 //declare the function for the operator
 operators.forEach((operator)=>{
@@ -80,8 +90,11 @@ operators.forEach((operator)=>{
 //create the function to get the operator
 function getOperator(event){
     operator=event.target.textContent;
+    if(num1.length==0 && operator.include("+"||"-")){
+        num1
+    }
     console.log(operator);
-    upperDisplay.innerText=num1+operator;
+    upperDisplay.innerText = num1+operator;
     lowerDisplay.innerText="";
 }
 
