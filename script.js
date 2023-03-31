@@ -31,7 +31,7 @@ function powers(event){
         buttons.forEach(button=>button.disabled=false);
         operators.forEach(operator=>operator.disabled=false);
     }
-    }
+}
 //setting the clear button
 clear.addEventListener("click", ()=>{
     lowerDisplay.innerText="";
@@ -46,12 +46,12 @@ eraser.addEventListener("click", () => {
         //I used to slice function here to remove a character from a string
       lowerDisplay.innerText = lowerDisplay.innerText.slice(0, -1);
       lowerDisplay.innerText = lowerDisplay.innerText.replace(/\s+/g, '');
-      num1=lowerDisplay.innerText;
+      num1+=lowerDisplay.innerText;
     } else if (upperDisplay.innerText.length > 0) {
         //I realised that after using the slice method, my num still remains a string
       upperDisplay.innerText = upperDisplay.innerText.slice(0, -1);
       upperDisplay.innerText = upperDisplay.innerText.replace(/\s+/g, '');
-      num2=upperDisplay.innerText;
+      num2+=upperDisplay.innerText;
     }
   });
 
@@ -63,23 +63,15 @@ function getData(event) {
     let data ="";
     data= event.target.textContent;
     if (!/[\*\/+-]$/.test(data)) {
-        if(data.length<=12 && /^[+\-]?/ && num1.length==0){
+        if(!operator && data<=12){
             num1 += data;
             lowerDisplay.innerText = num1;
             console.log(num1);
         }
-    } else if(/[\*\/+-]$/.test(data) && data.length>0){
-        num2=data;
-        upperDisplay.innerText=num1+operator+num2;
-        lowerDisplay="";
-    }
-    else {
-      // if an operator has been selected, add to num2
-      if(data.length<=12 && /^[+\-]?/ && operator){
-      num1 += data;
-      lowerDisplay.innerText="";
-      console.log(num1);
-      }
+    } else if(operator &&data<=12){
+        num2+=data;
+        console.log(num2);
+        lowerDisplay.innerText=num2;
     }
 }
 
@@ -90,12 +82,12 @@ operators.forEach((operator)=>{
 //create the function to get the operator
 function getOperator(event){
     operator=event.target.textContent;
-    if(num1.length==0 && operator.include("+"||"-")){
-        num1
+    if(num1.length<=12 && !num1.match(/[\/\*+\-]/)){
+        upperDisplay.innerText=num1+operator;
+        console.log(operator);
+        lowerDisplay.innerText="";
+        num2="";
     }
-    console.log(operator);
-    upperDisplay.innerText = num1+operator;
-    lowerDisplay.innerText="";
 }
 
 //define the event listener for the equal button
@@ -103,7 +95,7 @@ equals.addEventListener("click", performCalculation)
 
 //create the function to perform the calculation
 function performCalculation(){
-    let results;
+    let results=0;
     switch (operator){
         case '+':
             results= add(num1, num2);
