@@ -62,18 +62,18 @@ buttons.forEach((button)=>{
 function getData(event) {
     let data ="";
     data= event.target.textContent;
-    if (!/[\*\/+-]$/.test(data)) {
-        if(!operator && data<=12){
-            num1 += data;
+        if(!operator){
+            if(num1.length<=12)
+            num1+=data;
             lowerDisplay.innerText = num1;
             console.log(num1);
+        } else if(num1 && operator){
+            if(num2.length<=12)
+            num2 += data;
+            console.log(num2);
+            lowerDisplay.innerText=num2;
         }
-    } else if(operator &&data<=12){
-        num2+=data;
-        console.log(num2);
-        lowerDisplay.innerText=num2;
     }
-}
 
 //declare the function for the operator
 operators.forEach((operator)=>{
