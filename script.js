@@ -6,6 +6,7 @@ const equals=document.getElementById("equal");
 const clear=document.getElementById("clear");
 const eraser=document.getElementById("Backspace");
 const onOff=document.querySelectorAll(".onOff");
+const period = document.getElementById("period");
 let operator;
 let num1="";
 let num2="";
@@ -32,6 +33,7 @@ function powers(event){
         operators.forEach(operator=>operator.disabled=false);
     }
 }
+
 //setting the clear button
 clear.addEventListener("click", ()=>{
     lowerDisplay.innerText="";
@@ -65,11 +67,13 @@ function getData(event) {
         if(!operator){
             if(num1.length<=12)
             num1+=data;
+            else{}
             lowerDisplay.innerText = num1;
             console.log(num1);
         } else if(num1 && operator){
             if(num2.length<=12)
             num2 += data;
+            else{}
             console.log(num2);
             lowerDisplay.innerText=num2;
         }
@@ -111,7 +115,13 @@ function performCalculation(){
          break;
     }
     resetDisplay(num1, num2, operator);
-    lowerDisplay.innerText=results;
+    if(results>12){
+        results=results.toExponential(12);
+        lowerDisplay.innerText=results;
+    }
+    else{
+        lowerDisplay.innerText=results;
+    }
 }
 function resetDisplay(num1, num2, operator) {
     upperDisplay.innerText = num1+operator+num2;
