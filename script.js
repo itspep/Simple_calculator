@@ -22,6 +22,8 @@ function powers(event){
     if(onof==="OFF"){
         upperDisplay.innerText="";
         lowerDisplay.innerText="";
+        num1="";
+        num2="";
         buttons.forEach(button=>button.disabled=true);
         operators.forEach(operator=>operator.disabled=true);
         
@@ -33,7 +35,19 @@ function powers(event){
         operators.forEach(operator=>operator.disabled=false);
     }
 }
-
+period.addEventListener("click", getPeriod);
+function getPeriod() {
+    if (!num1.includes(".")) {
+        num1 += ".";
+        lowerDisplay.innerText = num1;
+      } else if (operator && !num2.includes(".")) {
+        num2 += ".";
+        lowerDisplay.innerText = num2;
+      }
+      
+  }
+  
+  
 //setting the clear button
 clear.addEventListener("click", ()=>{
     lowerDisplay.innerText="";
@@ -115,13 +129,12 @@ function performCalculation(){
          break;
     }
     resetDisplay(num1, num2, operator);
-    if(results>12){
+    /*if(results>12){
         results=results.toExponential(12);
         lowerDisplay.innerText=results;
     }
-    else{
+    else{*/
         lowerDisplay.innerText=results;
-    }
 }
 function resetDisplay(num1, num2, operator) {
     upperDisplay.innerText = num1+operator+num2;
