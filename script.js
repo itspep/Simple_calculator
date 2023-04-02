@@ -23,6 +23,7 @@ function powers(event){
     if(onof==="OFF"){
         upperDisplay.innerText="";
         lowerDisplay.innerText="";
+        operator="";
         num1="";
         num2="";
         buttons.forEach(button=>button.disabled=true);
@@ -30,10 +31,9 @@ function powers(event){
         
     }
     else if(onof==="ON"){
+        operator="";
         upperDisplay.disabled=false;
         lowerDisplay.disabled=false;
-        num1="";
-        num2="";
         buttons.forEach(button=>button.disabled=false);
         operators.forEach(operator=>operator.disabled=false);
     }
