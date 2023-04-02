@@ -11,6 +11,7 @@ let operator;
 let num1="";
 let num2="";
 let round=1;
+const MAX_DISPLAY_LENGTH=12; //maximum number of digits to display
 //setting the on and off button
 onOff.forEach((on_off)=>{
     on_off.addEventListener("click", powers)
@@ -31,6 +32,8 @@ function powers(event){
     else if(onof==="ON"){
         upperDisplay.disabled=false;
         lowerDisplay.disabled=false;
+        num1="";
+        num2="";
         buttons.forEach(button=>button.disabled=false);
         operators.forEach(operator=>operator.disabled=false);
     }
@@ -55,22 +58,17 @@ clear.addEventListener("click", ()=>{
     num1="";
     num2="";
     operator="";
+    results="";
 });
 //settting the erase button
 eraser.addEventListener("click", () => {
     if (lowerDisplay.innerText.length > 0) {
         //I used to slice function here to remove a character from a string
       lowerDisplay.innerText = lowerDisplay.innerText.slice(0, -1);
-      lowerDisplay.innerText = lowerDisplay.innerText.replace(/\s+/g, '');
-      num1+=lowerDisplay.innerText;
-    } else if (upperDisplay.innerText.length > 0) {
-        //I realised that after using the slice method, my num still remains a string
-      upperDisplay.innerText = upperDisplay.innerText.slice(0, -1);
-      upperDisplay.innerText = upperDisplay.innerText.replace(/\s+/g, '');
-      num2+=upperDisplay.innerText;
-    }
+      num1 = num1.slice(0, -1);
+    } 
   });
-
+let check=false;
 //determine which button was clicked
 buttons.forEach((button)=>{
     button.addEventListener("click", getData)});
@@ -79,15 +77,18 @@ function getData(event) {
     let data ="";
     data= event.target.textContent;
         if(!operator){
-            if(num1.length<=12)
+            if(data.length<MAX_DISPLAY_LENGTH){
             num1+=data;
-            else{}
             lowerDisplay.innerText = num1;
             console.log(num1);
-        } else if(num1 && operator){
-            if(num2.length<=12)
+             check=true;
+            }
+            else{
+                return;
+            }
+        } else if(check){
+            if(num2.length<MAX_DISPLAY_LENGTH)
             num2 += data;
-            else{}
             console.log(num2);
             lowerDisplay.innerText=num2;
         }
@@ -100,7 +101,16 @@ operators.forEach((operator)=>{
 //create the function to get the operator
 function getOperator(event){
     operator=event.target.textContent;
-    if(num1.length<=12 && !num1.match(/[\/\*+\-]/)){
+    if(num1.length>0){
+        upperDisplay.innerText=num1+operator;
+        console.log(operator);
+        lowerDisplay.innerText="";
+        num2="";
+    }
+    else if(num1.length===0){
+        num1=0;
+        console.log(num1);
+        check=true;
         upperDisplay.innerText=num1+operator;
         console.log(operator);
         lowerDisplay.innerText="";
@@ -129,12 +139,10 @@ function performCalculation(){
          break;
     }
     resetDisplay(num1, num2, operator);
-    /*if(results>12){
+    if(results.toString().length>12){
         results=results.toExponential(12);
-        lowerDisplay.innerText=results;
     }
-    else{*/
-        lowerDisplay.innerText=results;
+   lowerDisplay.innerText=results;
 }
 function resetDisplay(num1, num2, operator) {
     upperDisplay.innerText = num1+operator+num2;
