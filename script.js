@@ -11,6 +11,7 @@ let operator;
 let num1="";
 let num2="";
 let round=1;
+let results="";
 const MAX_DISPLAY_LENGTH=12; //maximum number of digits to display
 //setting the on and off button
 onOff.forEach((on_off)=>{
@@ -101,7 +102,7 @@ operators.forEach((operator)=>{
 //create the function to get the operator
 function getOperator(event){
     operator=event.target.textContent;
-    if(num1.length>0){
+    if(num1.length>0 && num2.length===0){
         upperDisplay.innerText=num1+operator;
         console.log(operator);
         lowerDisplay.innerText="";
@@ -116,6 +117,13 @@ function getOperator(event){
         lowerDisplay.innerText="";
         num2="";
     }
+    else if(results){
+        num1=results;
+        upperDisplay.innerText=num1+operator;
+        num2="";
+        results="";
+        lowerDisplay.innerText="";
+    }
 }
 
 //define the event listener for the equal button
@@ -123,26 +131,31 @@ equals.addEventListener("click", performCalculation)
 
 //create the function to perform the calculation
 function performCalculation(){
-    let results=0;
-    switch (operator){
-        case '+':
-            results= add(num1, num2);
-         break;
-        case '-':
-            results=minus(num1, num2);
-         break;
-        case '/':
-            results= divide(num1, num2);
-         break;
-        case '*':
-            results= times(num1, num2);
-         break;
+    if(!results){
+        switch (operator){
+            case '+':
+                results= add(num1, num2);
+             break;
+            case '-':
+                results=minus(num1, num2);
+             break;
+            case '/':
+                results= divide(num1, num2);
+             break;
+            case '*':
+                results= times(num1, num2);
+             break;
+        }
+        resetDisplay(num1, num2, operator);
+        if(results.toString().length>12){
+            results=results.toExponential(12);
+        }
+        console.log(results);
+        lowerDisplay.innerText=results;
     }
-    resetDisplay(num1, num2, operator);
-    if(results.toString().length>12){
-        results=results.toExponential(12);
+    else if (results){
+
     }
-   lowerDisplay.innerText=results;
 }
 function resetDisplay(num1, num2, operator) {
     upperDisplay.innerText = num1+operator+num2;
