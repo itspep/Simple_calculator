@@ -153,8 +153,25 @@ function performCalculation(){
         console.log(results);
         lowerDisplay.innerText=results;
     }
-    else if (results){
-
+    else if(results){
+        num2=results;
+        results="";
+        upperDisplay.innerText=num1+operator+num2;
+        switch (operator){
+            case '+':
+                results= add(num1, num2);
+             break;
+            case '-':
+                results=minus(num1, num2);
+             break;
+            case '/':
+                results= divide(num1, num2);
+             break;
+            case '*':
+                results= times(num1, num2);
+             break;
+        }
+        lowerDisplay.innerText=results;
     }
 }
 function resetDisplay(num1, num2, operator) {
