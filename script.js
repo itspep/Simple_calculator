@@ -41,16 +41,22 @@ function powers(event){
 }
 period.addEventListener("click", getPeriod);
 function getPeriod() {
-    if (!num1.includes(".")) {
-        num1 += ".";
-        lowerDisplay.innerText = num1;
-      } else if (operator && !num2.includes(".")) {
+    if (results && !results.toString().includes(".")){
+        num1=results+=".";
+        console.log(num1);
+        lowerDisplay.innerText=num1;
+        num2="";
+    }
+    else if (operator && !num2.includes(".") && !results) {
         num2 += ".";
         lowerDisplay.innerText = num2;
-      }
+    }
+    else if(!num1.includes(".") && !results) {
+        num1 += ".";
+        lowerDisplay.innerText = num1;
+    } 
+}
       
-  }
-  
   
 //setting the clear button
 clear.addEventListener("click", ()=>{
@@ -70,6 +76,8 @@ eraser.addEventListener("click", () => {
     } 
   });
 let check=false;
+let initialSecondNum=false;
+let resultsChecked=false;
 //determine which button was clicked
 buttons.forEach((button)=>{
     button.addEventListener("click", getData)});
@@ -87,14 +95,27 @@ function getData(event) {
             else{
                 return;
             }
-        } else if(check){
+        }
+         else if(check && !results && !resultsChecked){
             if(num2.length<MAX_DISPLAY_LENGTH)
             num2 += data;
             console.log(num2);
             lowerDisplay.innerText=num2;
+            initialSecondNum=true;
+        }
+        else if(resultsChecked && initialSecondNum && results.length===0){
+            num2=data;
+            lowerDisplay.innerText=num2;
+            console.log(num2);
+        }
+        else if(results){
+            results+=data;
+            num1=results;
+            lowerDisplay.innerText=num1;
+            console.log(num1);
+            
         }
     }
-
 //declare the function for the operator
 operators.forEach((operator)=>{
     operator.addEventListener("click", getOperator)
@@ -123,6 +144,7 @@ function getOperator(event){
         num2="";
         results="";
         lowerDisplay.innerText="";
+        resultsChecked=true;
     }
 }
 
