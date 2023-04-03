@@ -1,3 +1,4 @@
+//defining the varibles to store the elements
 const upperDisplay=document.getElementById("upperDisplay");
 const lowerDisplay=document.getElementById("lowerDisplay");
 const buttons=document.querySelectorAll(".number");
@@ -7,20 +8,25 @@ const clear=document.getElementById("clear");
 const eraser=document.getElementById("Backspace");
 const onOff=document.querySelectorAll(".onOff");
 const period = document.getElementById("period");
-let operator;
-let num1="";
-let num2="";
-let round=1;
-let results="";
+//declaring variables to store data
+let operator;//to store the operator
+let num1="";//to store the first number
+let num2="";//to store the second number
+let results="";// stores the calculated result
 const MAX_DISPLAY_LENGTH=12; //maximum number of digits to display
+//designed for checking
+let check=false;
+let initialSecondNum=false;
+let resultsChecked=false;
 //setting the on and off button
 onOff.forEach((on_off)=>{
     on_off.addEventListener("click", powers)
 });
-
+//this function turns on and off the calculator
 function powers(event){
     let onof=event.target.textContent;
     console.log(onof);
+    //check to see if the button press is "off"
     if(onof==="OFF"){
         upperDisplay.innerText="";
         lowerDisplay.innerText="";
@@ -29,8 +35,8 @@ function powers(event){
         num2="";
         buttons.forEach(button=>button.disabled=true);
         operators.forEach(operator=>operator.disabled=true);
-        
     }
+    //check to see if the button press is "on"
     else if(onof==="ON"){
         operator="";
         num1="";
@@ -44,6 +50,7 @@ function powers(event){
         operators.forEach(operator=>operator.disabled=false);
     }
 }
+//check and define the period
 period.addEventListener("click", getPeriod);
 function getPeriod() {
     if (results && !results.toString().includes(".")){
@@ -61,8 +68,6 @@ function getPeriod() {
         lowerDisplay.innerText = num1;
     } 
 }
-      
-  
 //setting the clear button
 clear.addEventListener("click", ()=>{
     lowerDisplay.innerText="";
@@ -88,9 +93,7 @@ eraser.addEventListener("click", () => {
     }
 });
 
-let check=false;
-let initialSecondNum=false;
-let resultsChecked=false;
+
 //determine which button was clicked
 buttons.forEach((button)=>{
     button.addEventListener("click", getData)});
