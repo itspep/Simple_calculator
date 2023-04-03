@@ -20,6 +20,7 @@ body {
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
+    color: maroon;
   }
   
   /* Style the display area */
@@ -35,8 +36,9 @@ body {
   
   .userInput {
     height: 50%;
-    font-size: 3em;
-    font-weight: bold;
+    font-size: 2em;
+    font-weight:lighter;
+    font-family:'Gill Sans', 'Gill Sans MT';
     text-align: right;
     padding-right: 10px;
     box-sizing: border-box;

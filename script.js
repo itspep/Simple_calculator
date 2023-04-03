@@ -33,6 +33,8 @@ function powers(event){
     }
     else if(onof==="ON"){
         operator="";
+        num1="";
+        num2="";
         upperDisplay.disabled=false;
         lowerDisplay.disabled=false;
         buttons.forEach(button=>button.disabled=false);
@@ -69,12 +71,20 @@ clear.addEventListener("click", ()=>{
 });
 //settting the erase button
 eraser.addEventListener("click", () => {
-    if (lowerDisplay.innerText.length > 0) {
-        //I used to slice function here to remove a character from a string
-      lowerDisplay.innerText = lowerDisplay.innerText.slice(0, -1);
-      num1 = num1.slice(0, -1);
-    } 
-  });
+    if(lowerDisplay.innerText==results){
+        results = results.slice(0,-1);
+        lowerDisplay.innerText = results;
+    }
+    else if(lowerDisplay.innerText==num1){
+        num1 = num1.slice(0, -1);
+        lowerDisplay.innerText = num1;
+    }
+    else if(lowerDisplay.innerText==num2){
+        num2 = num2.slice(0, -1);
+        lowerDisplay.innerText = num2;
+    }
+});
+
 let check=false;
 let initialSecondNum=false;
 let resultsChecked=false;
