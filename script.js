@@ -35,6 +35,9 @@ function powers(event){
         operator="";
         num1="";
         num2="";
+        upperDisplay.innerText="";
+        lowerDisplay.innerText="";
+        results="";
         upperDisplay.disabled=false;
         lowerDisplay.disabled=false;
         buttons.forEach(button=>button.disabled=false);
