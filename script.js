@@ -119,8 +119,8 @@ function getData(event) {
             lowerDisplay.innerText=num2;
             initialSecondNum=true;
         }
-        else if(resultsChecked && initialSecondNum && results.length===0){
-            num2=data;
+        else if(resultsChecked && initialSecondNum && results.length==0){
+            num2+=data;
             lowerDisplay.innerText=num2;
             console.log(num2);
         }
